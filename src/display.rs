@@ -122,6 +122,9 @@ where
             let point = pixel.0;
             if bounding_box.contains(point) {
                 let rgb: Rgb888 = pixel.1.into();
+                if rgb.g() == 0 && rgb.b() == 255 && rgb.r() == 255 {
+                    continue;
+                }
                 let rgb_slice = &[rgb.r(), rgb.g(), rgb.b(), 255];
                 let py = point.y as usize;
                 let px = point.x as usize;
